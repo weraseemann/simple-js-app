@@ -92,7 +92,7 @@ let pokemonRepository = (function() {
         modal.appendChild(imgElement);
         modalContainer.appendChild(modal);
 
-        modalContainer.style.display = 'block';
+        modalContainer.style.display = 'grid';
         modalContainer.classList.add('is-visible');
       }
 
