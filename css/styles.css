@@ -41,13 +41,12 @@
     padding: 15px;
     width: 100%;
     max-width: 500px;
-    text-align: center;
-
+    text-align: center;  
   }
 
   .modal-close {
     float: right;
-    -webkit-apearance: none;
+    -webkit-apearance: none; 
     border: 0;
     background: none;
     color: #777;
