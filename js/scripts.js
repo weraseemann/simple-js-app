@@ -92,11 +92,13 @@ let pokemonRepository = (function() {
         modal.appendChild(imgElement);
         modalContainer.appendChild(modal);
 
+        modalContainer.style.display = 'block';
         modalContainer.classList.add('is-visible');
       }
 
-      function hideModal() { //to remove the modal by clicking to ESC
-        modalContainer.classList.remove('is-visible');
+      function hideModal() {
+        modalContainer.style.display = 'none';
+
       }
     
         window.addEventListener('keydown', (e) => { // to remove the modal with ESC key
@@ -115,9 +117,6 @@ let pokemonRepository = (function() {
         }
         });
 
-        // document.querySelector('#show-modal').addEventListener('click', () => {
-        //     showModal('Modal title', 'Modal text!');
-        //     });
         
     return {
       
