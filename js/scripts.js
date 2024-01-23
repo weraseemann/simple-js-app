@@ -20,6 +20,8 @@ let pokemonRepository = (function() {
         let pokemonList = document.querySelector('.pokemon-list');
         let listpokemon = document.createElement('li');
         let button = document.createElement('button');
+        li.addClass('list-group-item');
+        button.addClass('btn btn-primary button-class')
         button.innerText = pokemon.name;
         button.classList.add('button-class');
         listpokemon.appendChild(button);
@@ -46,76 +48,100 @@ let pokemonRepository = (function() {
       }
       function loadDetails(item){
         let url = item.detailsUrl;
-        return fetch(url).then(function (response){
+        return fetch(apiUrl).then(function (response){
           let responseJson = response.json();
             return responseJson;
         }).then(function (details){
             item.imgUrl = details.sprites.front_default;
             item.height = details.height;
-            item.types =details.types;
+            item.weight = details.weight;
+            item.types = details.types;
+            item.attributes = details.attributes;
         }).catch(function (e){
             console.error(e);
         });
       }
     
-      function showDetails(item) {
-        pokemonRepository.loadDetails(item).then(function() {
-            showModal(item.name, 'Height: ' + item.height, item.imgUrl);
-      });
-      }   
+      // function showDetails(item) {
+      //   pokemonRepository.loadDetails(item).then(function() {
+      //       showModal(item.name, 'Height: ' + item.height, item.imgUrl);
+      // });
+      // }   
 
-      let modalContainer = document.querySelector('#modal-container');
+      // let modalContainer = document.querySelector('#modal-container');
         
-      function showModal(title, text, imgUrl) {
-        modalContainer.innerHTML = '';
+      function showModal(item) {
+        let modalBody = $('.modal-body');
+        let modalTitle = $('.modal-title');
+        let modalHeader = $('modal-header');
+        //modalContainer.innerHTML = '';
 
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+        //to clear the existing content of the modal
+        modalTitle.empty();
+        modalBody.empty();
 
-        let closeButtonElement = document.createElement('button'); //add Close-button
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        closeButtonElement.addEventListener('click', hideModal);
+        let nameElement = $('<h1>' + item.name + '</h1');
+        let imageElement = $('img class ="modal-image"');
+        imageElement.attr("src", item.imgUrl);
+        let heightElement = $('<p>' + "height: " + item.height + '</p>');
+        let weightElement = $('<p>' + "weight: " + item.weight + '</p>');
+        let typesElement = $('<p>' + "types: " + item.types + '</p>');
+        let abilitiesElement = $('<p>' + "abilities: " + item.abilities + '</p>');
 
-        let titleElement = document.createElement('h1');
-        titleElement.innerText = title;
+        // let modal = document.createElement('div');
+        // modal.classList.add('modal');
 
-        let contentElement = document.createElement('p'); 
-        contentElement.innerText = text;
+        // let closeButtonElement = document.createElement('button'); //add Close-button
+        // closeButtonElement.classList.add('modal-close');
+        // closeButtonElement.innerText = 'Close';
+        // closeButtonElement.addEventListener('click', hideModal);
 
-        let imgElement = document.createElement('img');
-        imgElement.src = imgUrl; 
+        // let titleElement = document.createElement('h1');
+        // titleElement.innerText = title;
 
-        modal.appendChild(closeButtonElement); 
-        modal.appendChild(titleElement);
-        modal.appendChild(contentElement);
-        modal.appendChild(imgElement);
-        modalContainer.appendChild(modal);
+        // let contentElement = document.createElement('p'); 
+        // contentElement.innerText = text;
 
-        modalContainer.style.display = 'grid';
-        modalContainer.classList.add('is-visible');
-      }
+        // let imgElement = document.createElement('img');
+        // imgElement.src = imgUrl; 
+        modalTitle.append(nameElement);
+        modalBody.append(imageElement);
+        modalBody.append(heightElement);
+        modalBody.append(weightElement);
+        modalBody.append(typesElement);
+        modalBody.append(abilitiesElement);
 
-      function hideModal() {
-        modalContainer.style.display = 'none';
 
-      }
+        // modal.appendChild(closeButtonElement); 
+        // modal.appendChild(titleElement);
+        // modal.appendChild(contentElement);
+        // modal.appendChild(imgElement);
+        // modalContainer.appendChild(modal);
+
+      //   modalContainer.style.display = 'grid';
+      //   modalContainer.classList.add('is-visible');
+      // }
+
+      // function hideModal() {
+      //   modalContainer.style.display = 'none';
+
+      // }
     
-        window.addEventListener('keydown', (e) => { // to remove the modal with ESC key
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-        });
+      //   window.addEventListener('keydown', (e) => { // to remove the modal with ESC key
+      //   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      //       hideModal();
+      //   }
+      //   });
 
     //to remove the modal when user cklicks outside of the modal
     // Since this is also triggered when clicking INSIDE the modal
     // We only want to close if the user clicks directly on the overlay (parentElement)
-        modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer) {
-                hideModal();
-        }
-        });
+        // modalContainer.addEventListener('click', (e) => {
+        // let target = e.target;
+        // if (target === modalContainer) {
+        //         hideModal();
+        // }
+        // });
 
         
     return {
@@ -128,7 +154,7 @@ let pokemonRepository = (function() {
       showDetails: showDetails,
       showModal: showModal,
     };
-  })();
+  };
 
 console.log(pokemonRepository.getAll());
 
@@ -136,6 +162,5 @@ pokemonRepository.loadList().then(function(){
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
 });
-});
-
-
+})
+})
