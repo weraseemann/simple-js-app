@@ -4,7 +4,10 @@ let pokemonRepository = (function() {
 
     
       function add(pokemon) {
-        if (typeof (pokemon) === 'object' && 'name' in pokemon && 'detailsUrl'in pokemon) {
+        if (
+          typeof (pokemon) === 'object' && 
+          'name' in pokemon && 
+          'detailsUrl'in pokemon) {
         pokemonList.push(pokemon);
          } else {
         console.log('wrong data type');
@@ -22,9 +25,12 @@ let pokemonRepository = (function() {
         let listpokemon = document.createElement('li');
         let button = document.createElement('button');
 
-        pokemonList.addClass('list-group');
-        listpokemon.addClass('list-group-item');
-        button.addClass('btn btn-primary button-class button-class');
+        // pokemonList.addClass('list-group');
+        // listpokemon.addClass('list-group-item');
+        // button.addClass('btn btn-primary button-class button-class');
+        pokemonList.classList.add("list-group");
+        listpokemon.classList.add("list-group-item");
+        button.classList.add("btn", "btn-primary", "button-class");
         button.innerText = pokemon.name;
 
         
@@ -36,9 +42,11 @@ let pokemonRepository = (function() {
       }
     
       function loadList() {
-        return fetch (apiUrl).then(function (response) {
+        return fetch (apiUrl)
+        .then(function (response) {
             return response.json();
-        }).then(function (json){
+        })
+        .then(function (json){
             json.results.forEach(function(item){
                 let pokemon = {
                     name: item.name,
@@ -116,7 +124,7 @@ let pokemonRepository = (function() {
         modalBody.append(weightElement);
         modalBody.append(typesElement);
         modalBody.append(abilitiesElement);
-
+      };
 
         // modal.appendChild(closeButtonElement); 
         // modal.appendChild(titleElement);
@@ -148,8 +156,7 @@ let pokemonRepository = (function() {
       //         hideModal();
       // }
       // });
-
-        
+  
     return {
       
       add: add,
@@ -159,14 +166,13 @@ let pokemonRepository = (function() {
       loadDetails: loadDetails,
       showDetails: showDetails,
       showModal: showModal,
-    };
+    
   };
-
-console.log(pokemonRepository.getAll());
+})();
 
 pokemonRepository.loadList().then(function(){
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
+
 });
-})
-})
+});
