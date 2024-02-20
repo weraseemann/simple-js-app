@@ -1,6 +1,6 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=60";
 
   function add(pokemon) {
     if (
@@ -94,10 +94,10 @@ let pokemonRepository = (function () {
     let nameElement = $("<h1>" + item.name + "</h1>");
     let imageElement = $('<img class ="modal-image"/>'); 
     imageElement.attr("src", item.imgUrl);
-    let heightElement = $("<p>" + "height: " + item.height + "</p>");
-    let weightElement = $("<p>" + "weight: " + item.weight + "</p>");
-    let typesElement = $("<p>" + "types: " + item.types + "</p>");
-    let abilitiesElement = $("<p>" + "abilities: " + item.abilities + "</p>");
+    let heightElement = $("<p>" + "Height: " + item.height + "</p>");
+    let weightElement = $("<p>" + "Weight: " + item.weight + "</p>");
+    let typesElement = $("<p>" + "Types: " + item.types + "</p>");
+    let abilitiesElement = $("<p>" + "Abilities: " + item.abilities + "</p>");
 
 
     modalTitle.append(nameElement);
