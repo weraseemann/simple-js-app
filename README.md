@@ -5,4 +5,4 @@ Pokedex is an application which displays a list of Pokemons and lets user to int
 How to get the project running:
 Project dependancies (ESLint rules, JavaScript version):
 
-Project API: https://pokeapi.co/api/v2/pokemon/
+Project API: https://pokeapi.co/api/v2/pokemon/?limit=60
