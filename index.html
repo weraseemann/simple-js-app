@@ -17,7 +17,11 @@
     <nav class="navbar navbar-light fixed-top" style="background-color: #F88F00">
         <img src="img/pokemon-5426712_1280.png" class="pokemon-image" alt="Logo of pokemon">
         <a class="navbar-brand pokemon-app">POKéDEX</a>
-        <input type="text" class="form-text" id="searchItem" placeholder="Search for Pokemon" title="Name of the pokemon">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search for Pokemon" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!-- <input type="text" class="form-text" id="searchItem" placeholder="Search for Pokemon" title="Name of the pokemon"> -->
     </nav>
 
     <div>
@@ -45,7 +49,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
