@@ -20,16 +20,14 @@ let pokemonRepository = (function () {
   //add unordered list <ul>, list of items <li> and <button> with innerText
   function addListItem(pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
+    pokemonList.style.listStyleType = "none";
     let listpokemon = document.createElement("li");
     let button = document.createElement("button");
 
-    pokemonList.classList.add("list-group");
-    listpokemon.classList.add("list-group-item");
     button.classList.add("btn", "btn-primary", "button-class");
-    button.classList.add("btn", "btn-primary", "btn-block"); 
     button.setAttribute("data-target", "#exampleModal"); 
     button.setAttribute("data-toggle", "modal");
-    button.innerText = pokemon.name;
+    button.innerText = capitalizeFirstLetter(pokemon.name);
 
     listpokemon.appendChild(button);
     pokemonList.appendChild(listpokemon);
@@ -64,11 +62,11 @@ let pokemonRepository = (function () {
         return responseJson;
       })
       .then(function (details) {
-        item.imgUrl = details.sprites.front_default;
+        item.imgUrl = details.sprites.other.dream_world.front_default;
         item.height = details.height;
         item.weight = details.weight;
-        item.types = details.types.map((type) => type.type.name);
-        item.abilities = details.abilities.map((ability) => ability.ability.name);
+        item.types = details.types.map((type) => " " + type.type.name);
+        item.abilities = details.abilities.map((ability) => " " + ability.ability.name);
       })
       .catch(function (e) {
         console.error(e);
@@ -79,6 +77,9 @@ let pokemonRepository = (function () {
     pokemonRepository.loadDetails(item).then(function () {
       showModal(item);
     });
+  }
+  function capitalizeFirstLetter(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
   function showModal(item) {
@@ -91,13 +92,13 @@ let pokemonRepository = (function () {
     modalBody.empty();
     modalHeader.empty();
 
-    let nameElement = $("<h1>" + item.name + "</h1>");
+    let nameElement = $("<h1>" + capitalizeFirstLetter(item.name) + "</h1>");
     let imageElement = $('<img class ="modal-image"/>'); 
     imageElement.attr("src", item.imgUrl);
-    let heightElement = $("<p>" + "Height: " + item.height + "</p>");
-    let weightElement = $("<p>" + "Weight: " + item.weight + "</p>");
-    let typesElement = $("<p>" + "Types: " + item.types + "</p>");
-    let abilitiesElement = $("<p>" + "Abilities: " + item.abilities + "</p>");
+    let heightElement = $("<p> <strong>Height: </strong>" + item.height + "</p>");
+    let weightElement = $("<p> <strong>Weight: </strong>" + item.weight + "</p>");
+    let typesElement = $("<p><strong>Types: </strong>" + item.types + "</p>");
+    let abilitiesElement = $("<p><strong>Abilities: </strong>" + item.abilities + "</p>");
 
 
     modalTitle.append(nameElement);
