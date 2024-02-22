@@ -108,7 +108,7 @@ let pokemonRepository = (function () {
     modalBody.append(typesElement);
     modalBody.append(abilitiesElement);
   }
-
+  
   return {
     add: add,
     getAll: getAll,
@@ -125,3 +125,5 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+
