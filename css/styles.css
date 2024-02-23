@@ -4,10 +4,12 @@
   --font-weight-heading: 700;
   --font-weight-article: 400;
   --dark-color-text: #2b2b2b;
-  --light-color-text: #fff;
+  --background-color: #f2f0f0;
   --accent-color-text: #253C90;
   --primary-color-background: linear-gradient(0deg, rgb(255, 234, 0) 0%, rgba(247, 143, 0, 1) 90%);
-  --secondary-color-background: #fff;
+  --title-color: green;
+  --primary-color-border: rgba(247, 143, 0, 1);
+  --secondary-color-border: #253C90;
 }
 
 body {
@@ -36,7 +38,6 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 44px;
- 
 }
 
   #modal-container.is-visible {
