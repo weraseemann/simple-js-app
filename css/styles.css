@@ -11,9 +11,7 @@
   --primary-color-border: rgba(247, 143, 0, 1);
   --secondary-color-border: #253C90;
 }
-
 body {
-  
   font-weight: 400;
   color: #2b2b2b;
   line-height: 1.6;
@@ -25,12 +23,13 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-
+.navbar {
+  background-color: #F88F00;
+}
 .pokemon-image {
   height: 80px;
   width: auto;
 }
-
 .pokemon-app {
   position: fixed;
   margin-left: 100px;
@@ -39,8 +38,7 @@ body {
   font-style: normal;
   font-size: 44px;
 }
-
-  #modal-container.is-visible {
+#modal-container.is-visible {
   position: fixed;
   padding: 20px;
   box-sizing: border-box;
@@ -54,7 +52,6 @@ body {
   display: block;
   text-align: center;
 }
-
 .modal {
   margin: 10% 25%;
   box-sizing: border-box;
@@ -69,7 +66,6 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-
 .modal-close {
   float: right;
   -webkit-apearance: none; 
@@ -78,11 +74,9 @@ body {
   color: #777;
   text-decoration: underline;
 }
-
 .modal h1 {
   margin-top: 0;
 }
-
 .modal p {
   margin-bottom: 0;
 }
@@ -90,21 +84,18 @@ body {
   margin-top: 100px;
   width: 100%;
 }
-
 .modal-title {
   font-family: "Paytone One", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: green;
 }
-
 .list-group {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   justify-content: center;
 }
-
 .modal-image {
   max-width: 100%;
   width: 200px;
